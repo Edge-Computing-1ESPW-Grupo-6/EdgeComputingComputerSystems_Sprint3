@@ -22,7 +22,7 @@ ___
 ### Desenvolvimento do projeto
 Esta etapa do projeto foi desenvolvida a partir do circuito e sistemas já apresentados [neste repositório](https://github.com/Edge-Computing-1ESPW-Grupo-6/EdgeComputingComputerSystems_Sprint2), com a inclusão de conectividade com a internet e a integração com uma plataforma IoT gratuita que atendesse as necessidades do projeto, a [TagoIO](https://tago.io). 
 
-O objetivo foi fazer com que os dados obtidos através das leituras realizadsa pelo sensor físico fossem enviadas para a internet e armazenadas na plataforma Tago, podendo assim ser manuseadas e analisadas conforme necessário. Para isso, foi preciso fazer um ajuste na componetização do circuito, visto que a placa utilizada do Arduino não apresentava possibilidades de conectividade com a internet. Ela foi então substituida por uma placa modelo ESP32, que possui conectividade Bluetooth e WiFi, e fizemos os respectivos ajustes nos códigos para que esta funcionasse adequadamente.
+O objetivo foi fazer com que os dados obtidos através das leituras realizadsa pelo sensor físico fossem enviadas para a internet e armazenadas na plataforma Tago, podendo assim ser manuseadas e analisadas conforme necessário. Para isso, foi preciso fazer um ajuste na componetização do circuito, visto que a placa utilizada do Arduino não apresentava possibilidades de conectividade com a internet. Ela foi então substituida por uma placa modelo [ESP32](https://www.espressif.com/en/products/socs/esp32), que possui conectividade Bluetooth e WiFi, e fizemos os respectivos ajustes nos códigos para que esta funcionasse adequadamente.
 ___
 ### Funcionamento do projeto
 O funcionamento do projeto na prática segue os mesmos passos do outro repositório já mencionado. Porém, ao fazer a letiura constante do espaço onde se encontra instalado (passo 2 do funcionamento apresentado), o programa realiza as seguintes ações::
@@ -67,4 +67,4 @@ ___
 Para execução do projeto é necessária experiência com o uso do programa Arduino e de seus componentes físicos, conhecimento básico da linguagem C++ para entendimento do código e ajustes necesários, conhecimento básico dos conceitos de IoT e conhecimento básico de usos da plataforma Tago
 ___
 ### Links relacionados
-  [Vídeo Explicativo do Projeto]()
+  [Vídeo Explicativo do Projeto](https://drive.google.com/file/d/1NT0kRLj3ujjGDca761uYHHcC2xtsm34h/view?usp=sharing)
