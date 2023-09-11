@@ -1,4 +1,4 @@
-## Desenvolvimento e Entrega da Sprint 2 - Edge Computing and Computer Systems - Challenge 2023 :rooster:
+## Desenvolvimento e Entrega da Sprint 3 - Edge Computing and Computer Systems - Challenge 2023 :rooster:
 ![Badge Concluido](https://img.shields.io/badge/STATUS-CONCLUIDO-GREEN)
 
 **Nomes + RM dos integrantes:**
@@ -12,33 +12,30 @@
 
 **Ano:** 2023
 ___
-<img src="Challenge_2023_2ª_Sprint.png">
+<img src="./imgs/Galo_Weather.png">
 
 ### Descrição do Projeto
-Após a apresentação da primeira sprint, contento a ideia base do circuito de hardware do nosso projeto para a Challenge 2023, proposta pela IBM, nesta segunda sprint fizemos a montagem prática do circuito em ambiente de testagem para replicação em ambiente físico. O circuito se trata de um sensor de proximidade idealizado para ser instalado em bueiros de ruas com o objetivo de detectar objetos e detritos que venham a ficar presos na entreda do bueiro, indicando assim a sua obstrução.
+ApNa terceira sprint da challenge proposta pela IBM, na matéria de Edge Computing & Computer Systems, nosso foco foi em integrar os circuitos e sistemas físicos apresentados com a internet, através dos conceitos de internet das coisas (internet of things). 
 
-Dessa forma, será possível, através dos alertas emitidos pelo sensor, identificar quais bueiros precisam de manutenção para evitar, ou mesmo minimizar, a ocorrência de enchentes e alagamentos na região. Além disso, será possível priorizar entre diversos bueiros que estejam emitindo alertas. Isso tudo em conjunto com as demais funcionalidades do projeto (sendo abordadas com mais detalhes em outras disciplinas), permite a emitir um alerta ainda mais preciso acerca de regiões apresentando riscos para alagamentos em enchentes.
+Dessa forma, os dados coletados pelos sensores ficarão armazenados online, o que viabiliza uma série de novas interações e tratamentos possíveis para esses dados, tornando o projeto mais dinâmico e funcional na prevenção de alerta de ocorrência de alagamentos nos centros urbanos.
 ___
 ### Desenvolvimento do projeto
-O projeto foi desaenvolvido utilizando o ambiente de testes Autodesk Tinkercad, para a elaboração de protótipos e testagem de circuitos e códigos, e o programa Arduino, juntamente com seus componentes físicos, para a montagem efetiva do circuito.
+Esta etapa do projeto foi desenvolvida a partir do circuito e sistemas já apresentados [neste repositório](https://github.com/Edge-Computing-1ESPW-Grupo-6/EdgeComputingComputerSystems_Sprint2), com a inclusão de conectividade com a internet e a integração com uma plataforma IoT gratuita que atendesse as necessidades do projeto, a [TagoIO](https://tago.io). 
 
-O projeto foi desenvolvido tendo-se em mente o objetivo de utiizar as funcionalidades de hardware e os conteúdos lecionados na disciplina de Edge Computing & Computer Systems para elaborar um circuito que funcionasse em conjunto com as demais funcionalidades das outras diciplina na criação de um projeto único direcionado ao Challenge proposto pela empresa IBM.
-
-Uma vez que nosso projeto consiste em uma aplicação capaz de alertar os usuários da possível ocorrência (ou não ocorrência) de enchentes e alagamentos em suas reigões, o circuito aqui proposto traz um execelente complemento ao introduzir dados coletados "fisicamente" ao sistema, que, em conjunto da estatística e base de dados digital utilizada, são capazes de prover maior precisão aos alertas gerados.
+O objetivo foi fazer com que os dados obtidos através das leituras realizadsa pelo sensor físico fossem enviadas para a internet e armazenadas na plataforma Tago, podendo assim ser manuseadas e analisadas conforme necessário. Para isso, foi preciso fazer um ajuste na componetização do circuito, visto que a placa utilizada do Arduino não apresentava possibilidades de conectividade com a internet. Ela foi então substituida por uma placa modelo ESP32, que possui conectividade Bluetooth e WiFi, e fizemos os respectivos ajustes nos códigos para que esta funcionasse adequadamente.
 ___
 ### Funcionamento do projeto
-O funcionamento do projeto na prática acontece da seguinte forma:
-1. O circuito é montado e instalado na entrada de um bueiro localizado em vias urbanas com recorrência de enchentes e alagamentos
-2. O sensor de proximidade faz a leitura constante do espaço onde se encontra instalado;
-    - A leitura padrão está configurada para 50cm, tamanho médio da entrada de um bueiro, mas pode ser ajustada de acordo com a necessidade;
-3. Ao detectar a presença de um objeto na área escaneada, o sensor irá emitir alertas, indicando que algo se encontra obstruindo a entrada do bueiro;
-    - Esses alertas por padrão estão definidos como um alerta sonoro (utilizando um Piezo) e um alerta visual (utilizando um LCD) para melhor demonstração prática, mas podem ser definidos como um alerta digital ou em qualquer outro formato, de acordo com a necessidade apresentada.
-4. Após a remoção o objeto detectado na entrada do bueiro, o sensor continua sua leitura.
+O funcionamento do projeto na prática segue os mesmos passos do outro repositório já mencionado. Porém, ao fazer a letiura constante do espaço onde se encontra instalado (passo 2 do funcionamento apresentado), o programa realiza as seguintes ações::
+1. A leitura feita pelo sensor é enviada para a plataforma Tago através de comandos específicos no [código](Codigo_Arduino.ino) do programa arduino, que levam em conta o endereço WEB da plataforma tago bem como o código token de um dispositivo virtual criado na plataforma, para que a leitura possa ser armazenada nas variáveis desse dispositivo.
+2. Essas leituras e suas respecitvas variáveis são apresentadas em forma de um dashboard-display, função já inclusa na plataforma Tago, indicando o estado atual do bueiro verificado (se está obstruido ou não)
+    - O sistema também envia a localização da leitura realizada pois, em caso de não funcionamento adequado do bueiro, é possível já informar as auoridades responsáveis da localização exata do problema identificado para que possam tomar medidas preventivas adequadas.
+<img src="./imgs/Draft.png">
+
 ___
 ### Como executar o projeto
-  Para executar o projeto serão necessários os seguintes softwares:
-  - Autodesk Tinkercad (para reproduzir a simulação exibida [nesta imagem](Challenge_2023_2ª_Sprint.png))
+  Para executar o projeto serão necessários:
   - Arduino (juntamente com o código presente [neste arquivo](Codigo_Arduino.ino) - anexa também sua [versão em txt](Codigo_Arduino.txt))
+  - Plataforma [TagoIO](https://tago.io) - Para estabelecer a estrutura online do sistema IoI aqui desenvolvido - bem como conhecimento básico sobre seu funcionamento e sobre os conceitos de IoT.
   
 E também será necessário um kit básico de componentes físicos do Arduino, dos quais serão utilizados:
 <table>
@@ -47,19 +44,7 @@ E também será necessário um kit básico de componentes físicos do Arduino, d
     <td align=center><b>Quantidade</b></td>
   </tr>
     <tr>
-    <td>Arduino UNO R3</td>
-    <td align=center>1</td>
-  </tr>
-  <tr>
-    <td>Resistor 1kΩ</td>
-    <td align=center>3</td>
-  </tr>
-    <tr>
-    <td>Piezo</td>
-    <td align=center>1</td>
-  </tr>
-  <tr>
-    <td>LCD 16x2</td>
+    <td>Placa ESP32*</td>
     <td align=center>1</td>
   </tr>
   <tr>
@@ -72,10 +57,14 @@ E também será necessário um kit básico de componentes físicos do Arduino, d
   </tr>
 </table>
 
-Para a montagem do circuito, basta reproduzir o [modelo do Tinkercad](Challenge_2023_2ª_Sprint.png) utilizando os combonentes físicos listados. Para execução, é necessário conectar a placa Arduino Uno R3 a um computador via USB, inserir o [código de execução](Codigo_Arduino.ino) no programa Arduino e fazer o upload.
+Para a montagem do circuito, é necessária fazer a ligação do seansor de distância na placa ESP32 de forma adequada, e conectar a placa em uma porta USB de um computador. Para execução, basta inserir o [código de execução](Codigo_Arduino.ino) no programa Arduino IDe e fazer o upload.
+
+<strong>Atenção:</strong> é necessário um aparelho de roteamento de conexão WiFi por perto, bem como ajustar as linhas 5 e 6 do código com o nome e senha da rede fornecida pelo aparalho, de modo que a placa ESP32 consiga se conectar com a internet e enviar os dados para a plataforma.
+
+*A placa ESP32 não é inclusa em kits básicos do arduino e deve ser adquirida a parte. A conexão de outros componentes com a placa deve ser feita corretamente levando-se em conta cada tipo de pino presente na placa. É possível utilizar [esta referência](./imgs/ESP32-Pinout.jpg) para auxílio na montagem.
 ___
 ### Pré-requisitos
-Para execução do projeto é necessário conhecimento sobre o uso da plataforma Autodesk Tinkercad, e experiência com o uso do programa Arduino e de seus componentes físicos. É necessário também saber usos básicos da linguagem C++ para entendimento do código e ajustes necesários.
+Para execução do projeto é necessária experiência com o uso do programa Arduino e de seus componentes físicos, conhecimento básico da linguagem C++ para entendimento do código e ajustes necesários, conhecimento básico dos conceitos de IoT e conhecimento básico de usos da plataforma Tago
 ___
 ### Links relacionados
-  [Projeto no Tinkercad](https://www.tinkercad.com/things/gTdeuSQoaZn?sharecode=rnLsi-F6Xi5Nmo4qGvEe9zArE4gv8mC646OCSQ50GLM)
+  [Vídeo Explicativo do Projeto]()

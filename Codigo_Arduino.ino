@@ -1,59 +1,67 @@
-//--------------------------------------------------------------
-// Incluindo bibliotecas e definindo pinos
-//--------------------------------------------------------------
-#include <LiquidCrystal.h>
+#include "Arduino.h"
+#include "WiFi.h"
+#include "HTTPClient.h"
+
+char ssid[] = "Rede Teste";
+char pass[] = "senhateste";
+char serverAddress[] = "https://api.tago.io/data";
+char contentHeader[] = "application/json";
+char tokenHeader[]   = "e56316cb-bfcd-40c4-b769-4eb1ac92e6b6"; //Token do Dispositivo
 
 #define trigPin 3
 #define echoPin 2
 
-LiquidCrystal lcd (4, 5, 6, 7, 8, 9);
-
-int buzzerPin = 10;
-
-//--------------------------------------------------------------
-// Estabalecendo variáveis utilizadas no código
-//--------------------------------------------------------------
 long duration, distance;
-int alerta = 0;
+bool bueiro1 = true;
 
-int mensagemAtual = 0;
-int mensagemAnterior = 0;
-
-//--------------------------------------------------------------
-// Definindo tipos dos pinos
-//--------------------------------------------------------------
 void setup() {
-  
   Serial.begin(9600);
-  
-  lcd.begin(16, 2); 
-  
+  init_wifi(); 
+
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   digitalWrite(trigPin, LOW);
-  
-  pinMode(buzzerPin, OUTPUT);
+
 }
 
-//--------------------------------------------------------------
-// Estabelecendo o loop principal e suas funções
-//--------------------------------------------------------------
-void loop() {  
+void init_wifi() {
+  Serial.println("Conectando WiFi");
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println("Conectado");
+  Serial.print("Meu IP é: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
   lerDistancia();
-  
-  definirAlertas();
-  
-  acionarAlertas();
-  
-  controleLCD();
-  
-  Serial.println(String(mensagemAtual));
-  
+
+  char anyData[30];
+  char postData[300];
+  char anyData1[30];
+  char bAny[30];
+  int statusCode = 0;
+
+  strcpy(postData, "{\n\t\"variable\": \"temperature\",\n\t\"value\": ");
+  dtostrf(bueiro1, 6, 2, anyData);
+  strncat(postData, anyData, 100);
+  Serial.println(postData);
+
+  client.begin(serverAddress);
+  client.addHeader("Content-Type", contentHeader);
+  client.addHeader("Device-Token", tokenHeader);
+  statusCode = client.POST(postData);
+
+  Serial.print("Status code: ");
+  Serial.println(statusCode);
+  Serial.println("End of POST to TagoIO");
+  Serial.println();
+  delay(5000);
 }
 
-//--------------------------------------------------------------
-// Relizando a leitura de distância e conversão para centímetros
-//--------------------------------------------------------------
 void lerDistancia(){
   digitalWrite(trigPin, LOW); 
   delayMicroseconds(2); 
@@ -64,72 +72,12 @@ void lerDistancia(){
 	
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) / 29.1;
-}
 
-//--------------------------------------------------------------
-// Definindo os alertas de acordo com a leitura de distância
-//--------------------------------------------------------------
-void definirAlertas(){
   if (distance < 10) {
-   alerta = 3;
-  }
-  else if (distance < 30) {
-    alerta = 2;
-  }
-  else if (distance < 50) {
-    alerta = 1;
+   bueiro1 = false;
   }
   else {
-    alerta = 0;
-  } 
-}
+    bueiro1 = true;
+  }
 
-//--------------------------------------------------------------
-// Aciona buzzer e monitor serial de acordo com o alarme ativo
-//--------------------------------------------------------------
-void acionarAlertas(){
-  if (alerta == 0) {
-    noTone(buzzerPin);
-    Serial.println();
-    Serial.println("Bueiro desobstruido");
-    }
-  else if (alerta == 1) {
-    tone(buzzerPin,200);
-    Serial.println();
-    Serial.println("Objeto a " + String(distance) + "cm");
-  }
-  else if (alerta == 2) {
-    tone(buzzerPin,400);
-    Serial.println();
-    Serial.println("Objeto a " + String(distance) + "cm");
-  }
-  else if (alerta == 3) {
-    tone(buzzerPin,600);
-    Serial.println();
-    Serial.println("Objeto a " + String(distance) + "cm");
-  }
 }
-
-//--------------------------------------------------------------
-// Imprimindo mensagens no LCD de acordo com o alerta ativo
-//--------------------------------------------------------------
-void controleLCD(){    
-  if (alerta == 0) {
-    lcd.setCursor(0, 0);
-    lcd.print("Bueiro");
-    lcd.setCursor(0, 1);
-    lcd.print("Desobstruido");
-  }
-  else {
-    lcd.setCursor(0, 0);
-    lcd.print("Bueiro Entupido");
-    lcd.setCursor(0, 1);
-    lcd.print("Objeto a " + String(distance) + "cm");
-  }
-  mensagemAtual = millis();
-  if (mensagemAtual - mensagemAnterior >= 3000){
-    lcd.clear();
-    mensagemAnterior = mensagemAtual;
-  }
-}
-  
