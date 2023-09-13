@@ -2,27 +2,20 @@
 #include "WiFi.h"
 #include "HTTPClient.h"
 
-char ssid[] = "Rede Teste";
-char pass[] = "senhateste";
+char ssid[] = "iPhone de Guilherme";
+char pass[] = "abcdefgh";
+
 char serverAddress[] = "https://api.tago.io/data";
 char contentHeader[] = "application/json";
 char tokenHeader[]   = "e56316cb-bfcd-40c4-b769-4eb1ac92e6b6"; //Token do Dispositivo
 
-#define trigPin 3
+HTTPClient client;
+
+#define trigPin 4
 #define echoPin 2
 
 long duration, distance;
 bool bueiro1 = true;
-
-void setup() {
-  Serial.begin(9600);
-  init_wifi(); 
-
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
-  digitalWrite(trigPin, LOW);
-
-}
 
 void init_wifi() {
   Serial.println("Conectando WiFi");
@@ -36,6 +29,17 @@ void init_wifi() {
   Serial.println(WiFi.localIP());
 }
 
+
+void setup() {
+  Serial.begin(9600);
+  init_wifi(); 
+
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  digitalWrite(trigPin, LOW);
+
+}
+
 void loop() {
   lerDistancia();
 
@@ -45,9 +49,12 @@ void loop() {
   char bAny[30];
   int statusCode = 0;
 
-  strcpy(postData, "{\n\t\"variable\": \"temperature\",\n\t\"value\": ");
+  strcpy(postData, "{\n\t\"variable\": \"distancia\",\n\t\"value\": ");
   dtostrf(bueiro1, 6, 2, anyData);
-  strncat(postData, anyData, 100);
+  strncat(postData, anyData, 300);
+  strcpy(anyData1, "\n\t}\n");
+  strncat (postData, anyData1, 100);
+  Serial.println(postData);
   Serial.println(postData);
 
   client.begin(serverAddress);
@@ -69,15 +76,16 @@ void lerDistancia(){
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10); 
   digitalWrite(trigPin, LOW);
-	
+  
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) / 29.1;
+  Serial.println(distance);
 
   if (distance < 10) {
-   bueiro1 = false;
+   bueiro1 = 0;
   }
   else {
-    bueiro1 = true;
+    bueiro1 = 1;
   }
 
 }
