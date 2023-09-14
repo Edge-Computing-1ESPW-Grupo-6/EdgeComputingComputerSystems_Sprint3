@@ -68,7 +68,7 @@ E também será necessário um kit básico de componentes físicos do Arduino, d
 </table>
 
 Para a montagem do circuito, é necessária fazer a ligação do seansor de distância na placa ESP32 de forma adequada, e conectar a placa em uma porta USB de um computador (através de um cabo USB-Micro USB). 
-<img src="./imgs/Circuit_Sketch.png" width="200" height="400" >
+<img src="./imgs/Circuit_Sketch.png" width="300" height="400" >
 
 Para execução, basta inserir o [código de execução](Codigo_Arduino.ino) no programa Arduino IDE e fazer o upload.
 
