@@ -23,7 +23,6 @@ ___
 Esta etapa do projeto foi desenvolvida a partir do circuito e sistemas já apresentados [neste repositório](https://github.com/Edge-Computing-1ESPW-Grupo-6/EdgeComputingComputerSystems_Sprint2), com a inclusão de conectividade com a internet e a integração com uma plataforma IoT gratuita que atendesse as necessidades do projeto, a [TagoIO](https://tago.io). 
 
 O objetivo foi fazer com que os dados obtidos através das leituras realizadas pelo sensor físico fossem enviadas para a internet e armazenadas na plataforma Tago, podendo assim ser manuseadas e analisadas conforme necessário. Para isso, foi preciso fazer um ajuste na componetização do circuito, visto que a placa utilizada do Arduino não apresentava possibilidades de conectividade com a internet. Ela foi então substituida por uma placa modelo [ESP32](https://www.espressif.com/en/products/socs/esp32), que possui conectividade Bluetooth e WiFi, e fizemos os respectivos ajustes nos códigos para que esta funcionasse adequadamente. Mantivemos o sensor ultrassônico para medição do espaço desejado.
-<img src="./imgs/Circuit_Sketch.png">
 ___
 
 ### Funcionamento do projeto
@@ -69,7 +68,7 @@ E também será necessário um kit básico de componentes físicos do Arduino, d
 </table>
 
 Para a montagem do circuito, é necessária fazer a ligação do seansor de distância na placa ESP32 de forma adequada, e conectar a placa em uma porta USB de um computador (através de um cabo USB-Micro USB). 
-<img src="./imgs/Circuit_Sketch.png">
+<img src="./imgs/Circuit_Sketch.png" width="200" height="400" >
 
 Para execução, basta inserir o [código de execução](Codigo_Arduino.ino) no programa Arduino IDE e fazer o upload.
 
