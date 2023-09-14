@@ -28,14 +28,14 @@ ___
 ### Funcionamento do projeto
 O funcionamento do projeto segue os mesmos passos do outro repositório já mencionado. Porém, ao fazer a letiura constante do espaço onde se encontra instalado, o programa realiza ações adicionais. Dessa forma, o funcionamento total do projeto é:
 1. O [circuito](./imgs/Circuit_Sketch.png) é montado e instalado na entrada de um bueiro localizado em vias urbanas com recorrência de enchentes e alagamentos;
-  - Importante levar-se em consideração a nova montagem do circuito, em consequência das mudanças em sua componentização.
+    - Importante levar-se em consideração a nova montagem do circuito, em consequência das mudanças em sua componentização.
 2. O sensor de proximidade faz a leitura constante do espaço onde se encontra instalado;
-  - A leitura padrão está configurada para um espaço de 50cm, tamanho médio da entrada de um bueiro, mas pode ser ajustada de acordo com a necessidade.
+    - A leitura padrão está configurada para um espaço de 50cm, tamanho médio da entrada de um bueiro, mas pode ser ajustada de acordo com a necessidade.
 3.  A leitura feita pelo sensor é enviada para a plataforma Tago através de comandos específicos no [código](Codigo_Arduino.ino) do programa arduino, que levam em conta o endereço WEB da plataforma tago bem como o código token de um dispositivo virtual criado na plataforma, para que a leitura possa ser armazenada nas variáveis desse dispositivo;
-  - Essas leituras e suas respecitvas variáveis são apresentadas em forma de um dashboard-display, função já inclusa na plataforma Tago, indicando o estado atual do bueiro verificado (se está obstruido ou não);
+    - Essas leituras e suas respecitvas variáveis são apresentadas em forma de um dashboard-display, função já inclusa na plataforma Tago, indicando o estado atual do bueiro verificado (se está obstruido ou não);
 4. Ao detectar a presença de um objeto na área escaneada, o sensor irá emitir alertas, indicando que algo se encontra obstruindo a entrada do bueiro;
-  - Um alerta é enviado para o programa, que o leva em consideração ao calcular a chance de um alagamento.
-  - Um alerta é enviado para órgãos públicos responsáveis pela limpeza das ruas, junto com a localização do bueiro monitorado, de modo que eles possam agir na área impactada.
+    - Um alerta é enviado para o programa, que o leva em consideração ao calcular a chance de um alagamento.
+    - Um alerta é enviado para órgãos públicos responsáveis pela limpeza das ruas, junto com a localização do bueiro monitorado, de modo que eles possam agir na área impactada.
 Após a remoção o objeto detectado na entrada do bueiro, o sensor continua sua leitura.
 ___
 ### Como executar o projeto
