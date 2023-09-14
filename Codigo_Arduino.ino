@@ -2,12 +2,12 @@
 #include "WiFi.h"
 #include "HTTPClient.h"
 
-char ssid[] = "iPhone de Guilherme";
-char pass[] = "abcdefgh";
+char ssid[] = "SSID do WIFI";
+char pass[] = "Senha do WIFI";
 
 char serverAddress[] = "https://api.tago.io/data";
 char contentHeader[] = "application/json";
-char tokenHeader[]   = "e56316cb-bfcd-40c4-b769-4eb1ac92e6b6"; //Token do Dispositivo
+char tokenHeader[]   = "TOKEN da TAGO"; //Token do Dispositivo
 
 HTTPClient client;
 
@@ -79,7 +79,8 @@ void lerDistancia(){
   
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) / 29.1;
-  Serial.println(distance);
+  Serial.println("Distancia: " + str(distance));
+
 
   if (distance < 10) {
    bueiro1 = 0;
