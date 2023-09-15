@@ -36,6 +36,7 @@ O funcionamento do projeto segue os mesmos passos do outro repositório já menc
 4. Ao detectar a presença de um objeto na área escaneada, o sensor irá emitir alertas, indicando que algo se encontra obstruindo a entrada do bueiro;
     - Um alerta é enviado para o programa, que o leva em consideração ao calcular a chance de um alagamento.
     - Um alerta é enviado para órgãos públicos responsáveis pela limpeza das ruas, junto com a localização do bueiro monitorado, de modo que eles possam agir na área impactada.
+
 Após a remoção o objeto detectado na entrada do bueiro, o sensor continua sua leitura.
 ___
 ### Como executar o projeto
@@ -69,7 +70,7 @@ E também será necessário um kit básico de componentes físicos do Arduino, d
 
 Para a montagem do circuito, é necessária fazer a ligação do seansor de distância na placa ESP32 de forma adequada, e conectar a placa em uma porta USB de um computador (através de um cabo USB-Micro USB). 
 <p align=center>
-<img src="./imgs/Circuit_Sketch.png" width="370" height="400" >
+<img src="./imgs/Circuit_Sketch.png" width="auto" height="400" >
 </p>
 
 Para execução, basta inserir o [código de execução](Codigo_Arduino.ino) no programa Arduino IDE e fazer o upload.
