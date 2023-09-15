@@ -23,6 +23,10 @@ ___
 Esta etapa do projeto foi desenvolvida a partir do circuito e sistemas já apresentados [neste repositório](https://github.com/Edge-Computing-1ESPW-Grupo-6/EdgeComputingComputerSystems_Sprint2), com a inclusão de conectividade com a internet e a integração com uma plataforma IoT gratuita que atendesse as necessidades do projeto, a [TagoIO](https://tago.io). 
 
 O objetivo foi fazer com que os dados obtidos através das leituras realizadas pelo sensor físico fossem enviadas para a internet e armazenadas na plataforma Tago, podendo assim ser manuseadas e analisadas conforme necessário. Para isso, foi preciso fazer um ajuste na componetização do circuito, visto que a placa utilizada do Arduino não apresentava possibilidades de conectividade com a internet. Ela foi então substituida por uma placa modelo [ESP32](https://www.espressif.com/en/products/socs/esp32), que possui conectividade Bluetooth e WiFi, e fizemos os respectivos ajustes nos códigos para que esta funcionasse adequadamente. Mantivemos o sensor ultrassônico para medição do espaço desejado.
+<p align=center>
+<img src="./imgs/Esquema_Funcionamento.png" width="650" height="auto">
+</p>
+
 ___
 
 ### Funcionamento do projeto
@@ -31,8 +35,16 @@ O funcionamento do projeto segue os mesmos passos do outro repositório já menc
     - Importante levar-se em consideração a nova montagem do circuito, em consequência das mudanças em sua componentização.
 2. O sensor de proximidade faz a leitura constante do espaço onde se encontra instalado;
     - A leitura padrão está configurada para um espaço de 50cm, tamanho médio da entrada de um bueiro, mas pode ser ajustada de acordo com a necessidade.
+<p align=center>
+<img src="./imgs/Bueiro.png" width="650" height="auto">
+</p>
+
 3.  A leitura feita pelo sensor é enviada para a plataforma Tago através de comandos específicos no [código](Codigo_Arduino.ino) do programa arduino, que levam em conta o endereço WEB da plataforma tago bem como o código token de um dispositivo virtual criado na plataforma, para que a leitura possa ser armazenada nas variáveis desse dispositivo;
     - Essas leituras e suas respecitvas variáveis são apresentadas em forma de um dashboard-display, função já inclusa na plataforma Tago, indicando o estado atual do bueiro verificado (se está obstruido ou não);
+<p align=center>
+<img src="./imgs/Dashboard.png" width="650" height="auto">
+</p>
+
 4. Ao detectar a presença de um objeto na área escaneada, o sensor irá emitir alertas, indicando que algo se encontra obstruindo a entrada do bueiro;
     - Um alerta é enviado para o programa, que o leva em consideração ao calcular a chance de um alagamento.
     - Um alerta é enviado para órgãos públicos responsáveis pela limpeza das ruas, junto com a localização do bueiro monitorado, de modo que eles possam agir na área impactada.
