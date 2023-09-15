@@ -45,7 +45,7 @@ ___
   - Acesso a plataforma [TagoIO](https://tago.io) - Para estabelecer a estrutura online do sistema IoI aqui desenvolvido - bem como conhecimento básico sobre seu funcionamento e sobre os conceitos de IoT.
   
 E também será necessário um kit básico de componentes físicos do Arduino, dos quais serão utilizados:
-<table>
+<table align=center>
   <tr>
     <td><b>Componente</b></td>
     <td align=center><b>Quantidade</b></td>
