@@ -99,4 +99,4 @@ ___
 Para execução do projeto é necessária experiência com o uso do programa Arduino e de seus componentes físicos, conhecimento básico da linguagem C++ para entendimento do código e ajustes necesários, conhecimento básico dos conceitos de IoT e conhecimento básico de usos da plataforma Tago
 ___
 ### Links relacionados
-  [Vídeo Explicativo do Projeto](https://drive.google.com/file/d/1NT0kRLj3ujjGDca761uYHHcC2xtsm34h/view?usp=sharing)
+  [Vídeo Explicativo do Projeto](https://drive.google.com/file/d/1EqzJbH2uIi5HkwbB1Zf4dogRBSRg_cqz/view?usp=sharing)
