@@ -83,10 +83,10 @@ void lerDistancia(){
 
 
   if (distance < 10) {
-   bueiro1 = 0;
+   bueiro1 = 1;
   }
   else {
-    bueiro1 = 1;
+    bueiro1 = 0;
   }
 
 }
