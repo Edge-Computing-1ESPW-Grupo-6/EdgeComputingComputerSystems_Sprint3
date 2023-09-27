@@ -2,17 +2,17 @@
 #include "WiFi.h"
 #include "HTTPClient.h"
 
-char ssid[] = "SSID do WIFI";
-char pass[] = "Senha do WIFI";
+char ssid[] = "Buzatinho";
+char pass[] = "11235813";
 
 char serverAddress[] = "https://api.tago.io/data";
 char contentHeader[] = "application/json";
-char tokenHeader[]   = "TOKEN da TAGO"; //Token do Dispositivo
+char tokenHeader[]   = "6a5fa881-1c4b-4a8c-8fdd-90e9423374ed"; //Token do Dispositivo
 
 HTTPClient client;
 
-#define trigPin 4
-#define echoPin 2
+#define trigPin 5
+#define echoPin 18
 
 long duration, distance;
 bool bueiro1 = true;
@@ -51,7 +51,7 @@ void loop() {
 
   strcpy(postData, "{\n\t\"variable\": \"distancia\",\n\t\"value\": ");
   dtostrf(bueiro1, 6, 2, anyData);
-  strncat(postData, anyData, 300);
+  strncat(postData, anyData, 100);
   strcpy(anyData1, "\n\t}\n");
   strncat (postData, anyData1, 100);
   Serial.println(postData);
@@ -79,7 +79,7 @@ void lerDistancia(){
   
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) / 29.1;
-  Serial.println("Distancia: " + str(distance));
+  Serial.println(distance);
 
 
   if (distance < 10) {
